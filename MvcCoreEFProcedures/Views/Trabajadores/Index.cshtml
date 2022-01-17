@@ -1,0 +1,73 @@
+﻿@model ResumenTrabajadores
+
+@{
+    List<string> oficios = ViewData["OFICIOS"] as List<string>;
+ }
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Procedimientos almacenados Parametros OUTPUT</h1>
+
+<form method="post">
+    <label>Oficios trabajadores:</label>
+    <select name="oficio" class="form-control">
+        @foreach (String oficio in oficios) 
+        {
+            <option value="@oficio">@oficio</option>
+        }
+    </select>
+    <br />
+    <button type="submit" class="btn btn-info">
+        Mostrar Trabajadores
+    </button>
+</form>
+
+@if (Model != null)
+{
+    <ul class="list-group-item">
+        <li class="list-group-item">
+            Suma Salarial:@Model.SumaSalarial
+        </li>
+        <li class="list-group-item">
+            Media Salarial:@Model.MediaSalarial
+        </li>
+    </ul>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>IDTRABAJADOR</th>
+                <th>APELLIDO</th>
+                <th>SALARIO</th>
+                <th>OFICIO</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Trabajadores)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdTrabajador)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Oficio)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

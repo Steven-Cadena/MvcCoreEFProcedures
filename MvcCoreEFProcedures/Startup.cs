@@ -26,10 +26,13 @@ namespace MvcCoreEFProcedures
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string cadena = this.Configuration.GetConnectionString("cadenalocalhospital");
+            /*******IMPORTANTE***********/
+            string cadena = this.Configuration.GetConnectionString("cadenalocalhospitaltajamar");
+            services.AddTransient<RepositoryTrabajadores>();
             services.AddTransient<RepositoryEnfermos>();
             services.AddTransient<RepositoryDoctores>();
-            services.AddDbContext<EnfermosContext>(options => options.UseSqlServer(cadena));
+            services.AddTransient<RepositoryVistas>();
+            services.AddDbContext<HospitalContext>(options => options.UseSqlServer(cadena));
             services.AddControllersWithViews();
         }
 

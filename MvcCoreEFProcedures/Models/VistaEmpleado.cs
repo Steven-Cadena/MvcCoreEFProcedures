@@ -23,3 +23,4 @@ namespace MvcCoreEFProcedures.Models
         public string Localidad { get; set; }
     }
 }
+
